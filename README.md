@@ -4,7 +4,7 @@
   <img src="assets/logo.png" alt="GiveBackGPT Logo" />
 </p>
 
-<h4 align="center">An open initiative and a novel process to build fair AI economies that include creators for true and sustainable growth.</h4>
+<h4 align="center">An open, innovative approach to build fair AI economies that include creators for sustainable growth.</h4>
 
 <p align="center">
 	<a href="https://github.com/medoidai/givebackgpt/blob/main/LICENSE" target="blank"><img src="https://img.shields.io/github/license/medoidai/givebackgpt?style=flat-square" alt="GiveBackGPT Licence" /></a>
