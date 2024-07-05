@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GiveBackGPT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/lux/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  </head>
+  <body class="bg-light min-vh-100 d-flex flex-column">
+    <div class="container mt-4 flex-grow-1 d-flex flex-column">
+      <div class="row flex-grow-1 justify-content-center align-items-center">
+        <div class="col-md-12 d-flex flex-column">
+          <header id="header" class="rounded p-4 text-center d-flex flex-column align-items-center justify-content-center">
+            <div class="d-flex flex-column flex-md-row align-items-center">
+              <img src="images/logo.png" alt="Logo of GiveBackGPT" class="mb-3 mb-md-0" style="max-width: 90px;">
+              <div id="header-title" class="display-4 fw-bold mb-2 mb-md-0 ms-md-4">GiveBackGPT</div>
+            </div>
+            <div class="mt-2 mt-md-3">"Empowering AI with Open Access, One Search at a Time"</div>
+          </header>
+        </div>
+      </div>
+    </div>
+    <div class="container flex-grow-1 d-flex flex-column">
+      <div class="row flex-grow-1">
+        <div class="col-md-7 mt-4 d-flex flex-column">
+          <h2 class="h4 fw-bold">Chat with any LLM</h2>
+          <div class="section-box flex-grow-1 overflow-auto p-4 shadow mt-2 rounded" id="chat"></div>
+          <div class="input-group mt-4">
+            <input id="promptInput" type="text" class="form-control rounded" placeholder="Ask a question...">
+            <button id="generateBtn" class="btn btn-primary rounded ms-3">Send</button>
+          </div>
+        </div>
+        <div class="col-md-5 mt-4 d-flex flex-column">
+          <h2 class="h4 fw-bold">Similar Web Pages</h2>
+          <div class="section-box flex-grow-1 overflow-auto p-4 shadow mt-2 rounded" id="searchResults"></div>
+          <button id="creditAuthorsBtn" class="btn btn-primary rounded mt-4">Credit Authors</button>
+        </div>
+      </div>
+    </div>
+    <div class="container mt-4">
+      <div class="card rounded">
+        <div class="card-header fw-bold">SETTINGS</div>
+        <div class="card-body">
+          <ul class="nav nav-tabs" id="myTab">
+            <li class="nav-item">
+              <a class="nav-link active" id="llm-tab" data-bs-toggle="tab" href="#llm">LLM</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="embeddings-tab" data-bs-toggle="tab" href="#embeddings">Embeddings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="web-search-tab" data-bs-toggle="tab" href="#web-search">Web Search</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="web-scraping-tab" data-bs-toggle="tab" href="#web-scraping">Web Scraping</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="llm">
+              <div class="row mt-4">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <div class="form-group">
+                    <label for="llmSelect">Select LLM:</label>
+                    <select id="llmSelect" class="form-select rounded" disabled>
+                      <option value="gpt-3.5-turbo">gpt-3.5-turbo (OpenAI)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="llmApiKey">LLM API Key:</label>
+                    <input type="password" id="llmApiKey" class="form-control rounded" placeholder="Enter LLM API Key">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="web-search">
+              <div class="row mt-4">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <div class="form-group">
+                    <label for="webSearchApi">Select Web Search:</label>
+                    <select id="webSearchApi" class="form-select rounded" disabled>
+                      <option>SerpApi</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="searchApiKey">Web Search API Key:</label>
+                    <input type="password" id="searchApiKey" class="form-control rounded" placeholder="Enter Search API Key">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="embeddings">
+              <div class="row mt-4">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <div class="form-group">
+                    <label for="embeddingsApi">Select Embeddings:</label>
+                    <select id="embeddingsApi" class="form-select rounded" disabled>
+                      <option value="text-embedding-3-small">text-embedding-3-small (OpenAI)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="embeddingsApiKey">Embeddings API Key:</label>
+                    <input type="password" id="embeddingsApiKey" class="form-control rounded" placeholder="Enter Embeddings API Key">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="web-scraping">
+              <div class="row mt-4">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <div class="form-group">
+                    <label for="scrapeApi">Select Web Scraping:</label>
+                    <select id="scrapeApi" class="form-select rounded" disabled>
+                      <option>ScrapingBee</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="scrapeApiKey">Web Scraping API Key:</label>
+                    <input type="password" id="scrapeApiKey" class="form-control rounded" placeholder="Enter Scraping API Key">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="mt-4 p-4 text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 d-flex mb-4">
+            <div class="card rounded footer-box flex-fill">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Learn More</h5>
+                <p class="card-text flex-fill">Discover more about GiveBackGPT and our mission to support open-access content creators.</p>
+                <a href="https://www.medoid.ai/blog/ai-economies-should-include-and-credit-content-creators-givebackgpt/" class="btn btn-primary rounded">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex mb-4">
+            <div class="card rounded footer-box flex-fill">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Contact</h5>
+                <p class="card-text flex-fill">Do you have questions or feedback? We're here to listen and assist you!</p>
+                <a href="https://www.medoid.ai/contact/" class="btn btn-primary rounded">Contact</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex mb-4">
+            <div class="card rounded footer-box flex-fill">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Follow</h5>
+                <p class="card-text flex-fill">Stay connected with us on LinkedIn for the latest updates and insights!</p>
+                <a href="https://www.linkedin.com/showcase/givebackgpt/" class="btn btn-primary rounded">Follow</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-3 mb-3">GiveBackGPT is free software! 🤲</div>
+        <a href="https://github.com/medoidai/givebackgpt/" target="_blank" rel="noopener noreferrer">
+          <img src="images/github.svg" width="32" height="32" alt="GitHub repository of GiveBackGPT">
+        </a>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script type="module" src="scripts/app.js"></script>
+  </body>
+</html>
