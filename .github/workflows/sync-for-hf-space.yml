@@ -1,0 +1,19 @@
+name: Sync to HF Space
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sync-to-hf-space:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true
+      - name: Push to HF Space
+        env:
+          HF_SPACE_ACCESS_TOKEN: ${{ secrets.HF_SPACE_ACCESS_TOKEN }}
+          HF_USERNAME: ${{ secrets.HF_USERNAME }}
+        run: git push --force https://$HF_USERNAME:$HF_SPACE_ACCESS_TOKEN@huggingface.co/spaces/medoidai/GiveBackGPT main

@@ -1,0 +1,14 @@
+.section-box {
+    height: 400px;
+    max-height: 60vh;
+}
+.btn, .form-control {
+    height: 45px;
+}
+.btn {
+    background-color: #2B3542;
+    color: #E8EEF1;
+}
+.text-pre-wrap {
+    white-space: pre-wrap;
+}
