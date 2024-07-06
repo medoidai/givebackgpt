@@ -37,7 +37,7 @@
     - [🎉 Trying Out the Features](#-trying-out-the-features)
   - [🤲 Contributions](#-contributions)
   - [🌱 What's Next](#-whats-next)
-  - [🙏 Support](#-support)
+  - [🙏 Community Support](#-community-support)
   - [📄 License](#-license)
 
 ## 📚 Overview
@@ -137,7 +137,7 @@ The project is [Free Software](https://www.gnu.org/philosophy/free-sw.en.html) a
 * TODO 2...
 * TODO 3...
 
-## 🙏 Support
+## 🙏 Community Support
 
 We all need support and motivation. **GiveBackGPT** is not an exception. Please give this project a ⭐️ to encourage and show that you liked it. Don't forget to leave a star ⭐️ before you move away.
 
