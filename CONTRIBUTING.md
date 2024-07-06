@@ -1,4 +1,4 @@
-# Contributing
+# Contribution Guidelines
 
 We welcome contributions from the community and are excited to work with you to improve this project! To ensure a smooth collaboration process, we follow the GitHub Flow strategy. Here's how you can contribute:
 
@@ -12,7 +12,7 @@ We welcome contributions from the community and are excited to work with you to 
 
 Before making any changes, create a new branch from the `main` branch of your forked repository. This branch will contain your feature or bug fix. Ensure your modifications adhere to the project's coding conventions and standards.
 
-## Sync your Fork
+## Sync Your Fork
 
 To minimize the probability of merge conflicts, it's recommended to sync your forked repository frequently with the original repository's `main` branch. You can do this by using the "Sync fork" button available on the GitHub page of your forked repository.
 
