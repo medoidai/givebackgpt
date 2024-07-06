@@ -1,13 +1,11 @@
 # Security Policy
 
-## Reporting Security Vulnerabilities
+To maintain the security of our project, we encourage all users and contributors to promptly report any potential vulnerabilities. Here’s how you can assist us:
 
-We encourage everyone using or contributing to our project to promptly report any potential security issues. Here's how you can help:
+- **Report privately**: Please send an email to [info@medoid.ai](mailto:info@medoid.ai) and clearly indicate that your message concerns security. For instance, use a subject line like "Security Issue - Project Name".
 
-- **Notify us privately**: Send an email to [info@medoid.ai](mailto:info@medoid.ai) and clearly state that it's about security. For example, use a subject line like "Safety Problem - Project Name".
-  
-- **Provide details**: Describe the issue with as much detail as possible. If you have evidence such as code snippets or logs, include them in your email.
+- **Include details**: Provide a thorough description of the vulnerability. If possible, attach supporting evidence such as code snippets or logs to your email.
 
-- **Responsible disclosure**: Please allow us a reasonable amount of time to investigate and address the issue before discussing it publicly. This ensures we can fix it before it becomes a larger problem.
+- **Responsible disclosure**: Kindly allow us a reasonable amount of time to investigate and mitigate the vulnerability before disclosing it publicly. This approach ensures that we can resolve the issue before it poses a greater risk.
 
-Thank you for your help in keeping our project secure!
+Thank you for helping us uphold the security of our project!
