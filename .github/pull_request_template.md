@@ -15,8 +15,8 @@ Please review and check the following before submitting your pull request.
 - [ ] My changes generate no new warnings or errors.
 - [ ] I have tested my changes locally and they work as expected.
 
-## Screenshots
-Add screenshots to help explain your changes, if applicable.
+## Screenshots (if applicable)
+Add screenshots to help explain your changes.
 
 ## Additional Notes
 Any additional information or context for reviewers regarding this pull request.
