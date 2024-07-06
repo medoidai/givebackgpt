@@ -9,6 +9,7 @@ If this pull request resolves an open issue, please link to the issue here.
 ## Checklist
 Please review and check the following before submitting your pull request.
 
+- [ ] I have read the *Contribution Guidelines* document.
 - [ ] I have performed a self-review of my own code.
 - [ ] I have commented my code, particularly in hard-to-understand areas.
 - [ ] I have made corresponding changes to the documentation (if applicable).
