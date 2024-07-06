@@ -22,25 +22,25 @@
     <a href="https://www.linkedin.com/showcase/givebackgpt/" target="blank">Follow</a>
 </p>
 
-## 📜 Table of contents
+## 📜 Table of Contents
 
 - [Medoid AI - GiveBackGPT](#medoid-ai---givebackgpt)
-  - [📜 Table of contents](#-table-of-contents)
-  - [📚 What is it about?](#-what-is-it-about)
-  - [✨ Features](#-features)
-  - [🛠️ Technologies used](#️-technologies-used)
-  - [🚀 Getting started](#-getting-started)
+  - [📜 Table of Contents](#-table-of-contents)
+  - [📚 Overview](#-overview)
+  - [✨ Features Overview](#-features-overview)
+  - [🛠️ Technology Stack](#️-technology-stack)
+  - [🚀 Quick Start Guide](#-quick-start-guide)
     - [📋 Prerequisites](#-prerequisites)
-    - [📥 Installation](#-installation)
-  - [🎯 Usage](#-usage)
-    - [▶️ Run the app](#️-run-the-app)
-    - [🎉 Try it out!](#-try-it-out)
-  - [🤲 Can I contribute?](#-can-i-contribute)
-  - [🌱 Next steps](#-next-steps)
-  - [🙏 Support](#-support)
-  - [📄 What license do you use?](#-what-license-do-you-use)
+    - [📥 Installation Steps](#-installation-steps)
+  - [🎯 How to Use](#-how-to-use)
+    - [▶️ Launching the App](#️-launching-the-app)
+    - [🎉 Trying Out the Features](#-trying-out-the-features)
+  - [🤲 Contributions](#-contributions)
+  - [🌱 What's Next](#-whats-next)
+  - [🙏 Community Support](#-community-support)
+  - [📄 License](#-license)
 
-## 📚 What is it about?
+## 📚 Overview
 
 <p align="center">
   <img src="assets/creators.png" />
@@ -54,7 +54,7 @@ Our vision includes establishing a licensing framework where **GenAI vendors** p
 
 Follow us for updates on our progress towards a comprehensive standalone solution and join us in supporting a **democratized AI future**.
 
-## ✨ Features
+## ✨ Features Overview
 
 | Feature                        | Description                                                                                                       |
 |--------------------------------|-------------------------------------------------------------------------------------------------------------------|
@@ -66,7 +66,7 @@ Follow us for updates on our progress towards a comprehensive standalone solutio
 | Configuration Settings         | Offers tabs for managing and setting API keys for external services                                               |
 | Responsive Design              | Utilizes Bootstrap framework for ensuring responsiveness across various devices                                   |
 
-## 🛠️ Technologies used
+## 🛠️ Technology Stack
 
 * **HTML**: For structuring the content of the web application.
 * **CSS**: For styling the application to ensure it is visually appealing and user-friendly.
@@ -75,7 +75,7 @@ Follow us for updates on our progress towards a comprehensive standalone solutio
 * **Docker**: To ensure consistent and reliable deployment across different environments.
 * **NGINX**: Used to serve the static content of the web application.
 
-## 🚀 Getting started
+## 🚀 Quick Start Guide
 
 Before moving on with the Installation, make sure the Prerequisites below are satisfied.
 
@@ -83,7 +83,7 @@ Before moving on with the Installation, make sure the Prerequisites below are sa
 
 Make sure you have [Docker](https://www.docker.com/) and [Git](https://git-scm.com/) installed.
 
-### 📥 Installation
+### 📥 Installation Steps
 
 - Clone the project's repository
 
@@ -97,15 +97,15 @@ git clone git@github.com:medoidai/givebackgpt.git
 cd givebackgpt
 ```
 
-## 🎯 Usage
+## 🎯 How to Use
 
-### ▶️ Run the app
+### ▶️ Launching the App
 
 ```sh
 docker run --rm -p 80:80 --mount type=bind,source="$(pwd)"/src,target=/usr/share/nginx/html nginx:alpine
 ```
 
-### 🎉 Try it out!
+### 🎉 Trying Out the Features
 
 1. Launch the web application on your local environment by visiting http://localhost/
 
@@ -127,20 +127,20 @@ docker run --rm -p 80:80 --mount type=bind,source="$(pwd)"/src,target=/usr/share
   <img src="assets/credit-authors.png">
 </div>
 
-## 🤲 Can I contribute?
+## 🤲 Contributions
 
-Absolutely! The project is [Free Software](https://www.gnu.org/philosophy/free-sw.en.html) and we welcome your contributions!
+The project is [Free Software](https://www.gnu.org/philosophy/free-sw.en.html) and we welcome your contributions!
 
-## 🌱 Next steps
+## 🌱 What's Next
 
 * TODO 1...
 * TODO 2...
 * TODO 3...
 
-## 🙏 Support
+## 🙏 Community Support
 
 We all need support and motivation. **GiveBackGPT** is not an exception. Please give this project a ⭐️ to encourage and show that you liked it. Don't forget to leave a star ⭐️ before you move away.
 
-## 📄 What license do you use?
+## 📄 License
 
 See our [LICENSE](LICENSE) for more details.
