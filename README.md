@@ -131,7 +131,7 @@ docker run --rm -p 80:80 --mount type=bind,source="$(pwd)"/src,target=/usr/share
 
 The project is open-source and we welcome your contributions!
 
-Whether you're fixing a bug, improving documentation, or adding a new feature, your input helps enhance GiveBackGPT for everyone.
+Whether you're fixing a bug, improving documentation, or adding a new feature, your input helps enhance **GiveBackGPT** for everyone.
 
 Please review our [Contribution Guidelines](CONTRIBUTING.md) before getting started. These guidelines outline the process for submitting pull requests and ensure that all contributions meet the standards.
 
