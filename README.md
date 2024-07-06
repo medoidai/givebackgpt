@@ -77,7 +77,7 @@ Follow us for updates on our progress towards a comprehensive standalone solutio
 
 ## 🚀 Quick Start Guide
 
-Before moving on with the Installation, make sure the Prerequisites below are satisfied.
+Before moving on with the installation steps, make sure the prerequisites below are satisfied.
 
 ### 📋 Prerequisites
 
