@@ -143,7 +143,7 @@ Please review our [Contribution Guidelines](CONTRIBUTING.md) before getting star
 
 ## 🙏 Community Support
 
-We all need support and motivation. **GiveBackGPT** is not an exception. Please give this project a ⭐️ to encourage and show that you liked it. Don't forget to leave a star ⭐️ before you move away.
+We all need support and motivation. **GiveBackGPT** is not an exception. Please give this project a ⭐️ to encourage and show that you liked it.
 
 ## 📄 License
 
