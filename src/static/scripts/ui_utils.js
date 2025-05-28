@@ -1,7 +1,8 @@
 export function checkCreditAuthorsButtonClickableState(collectedResults) {
     const creditAuthorsBtn = document.getElementById('creditAuthorsBtn');
+    const searchResults = document.getElementById('searchResults');
 
-    if (collectedResults.length === 0) {
+    if (collectedResults.length === 0 || searchResults.dataset.isProcessing === 'true') {
         disableButton(creditAuthorsBtn);
     } else {
         enableButton(creditAuthorsBtn);
@@ -67,19 +68,21 @@ export function appendToChat(element) {
     chat.scrollTop = chat.scrollHeight;
 }
 
-export function appendResponseToChat(sender, message) {
+export function appendResponseToChat(sender, message, id=`chat-msg-${Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2)}`) {
     const div1 = document.createElement('div');
-
     div1.classList.add('fw-bold', 'mb-1');
     div1.textContent = `${sender}:`;
 
     const div2 = document.createElement('div');
-
-    div2.classList.add('mb-3');
+    div2.classList.add('mb-3', 'text-pre-wrap');
     div2.textContent = message;
 
-    appendToChat(div1);
-    appendToChat(div2);
+    const parentDiv = document.createElement('div');
+    parentDiv.appendChild(div1);
+    parentDiv.appendChild(div2);
+    parentDiv.id = id;
+
+    appendToChat(parentDiv);
 }
 
 export function appendSearchQuery(summary) {
@@ -90,7 +93,7 @@ export function appendSearchQuery(summary) {
 
     const div2 = document.createElement('div');
 
-    div2.classList.add('mb-3');
+    div2.classList.add('mb-3', 'text-pre-wrap');
     div2.textContent = summary;
 
     appendToSearch(div1);
@@ -116,6 +119,16 @@ export function appendSearchResultsHeader() {
     appendToSearch(div);
 }
 
+export function appendSearchErrorMessage(message) {
+    const div = document.createElement('div');
+
+    div.classList.add('mb-3', 'text-danger', 'fst-italic');
+
+    div.textContent = message;
+
+    appendToSearch(div);
+}
+
 export function appendSearchProcessingMessage() {
     const p = document.createElement('p');
 
@@ -133,6 +146,18 @@ export function removeSearchProcessingMessage() {
 
     if (processingMessage) {
         processingMessage.remove();
+    }
+}
+
+export function appendChatRespondingMessage() {
+    appendResponseToChat("LLM", "Responding...", "responding-message");
+}
+
+export function removeChatRespondingMessage() {
+    const respondingMessage = document.getElementById('responding-message');
+
+    if (respondingMessage) {
+        respondingMessage.remove();
     }
 }
 
@@ -162,10 +187,44 @@ export function checkSendButtonClickableState() {
     const promptInput = document.getElementById('promptInput');
     const generateBtn = document.getElementById('generateBtn');
     const chat = document.getElementById('chat');
-    
+
     if (promptInput.value.trim() === '' || chat.dataset.isProcessing === 'true') {
         disableButton(generateBtn);
     } else {
         enableButton(generateBtn);
     }
+}
+
+export function createToast(message, type) {
+    const template = document.getElementById(`hidden-toast-${type}`);
+
+    const toastElement = template.cloneNode(true);
+
+    toastElement.removeAttribute('id');
+
+    toastElement.querySelector('.toast-body').textContent = message;
+
+    document.getElementById('toastContainer').appendChild(toastElement);
+
+    const bsToast = new bootstrap.Toast(toastElement, { delay: 5000, autohide: true });
+
+    toastElement.addEventListener('hidden.bs.toast', () => {
+        bsToast.dispose();
+
+        toastElement.remove();
+    });
+
+    bsToast.show();
+}
+
+export function showInfoToast(message) {
+    createToast(message, 'info');
+}
+
+export function showErrorToast(message) {
+    createToast(message, 'error');
+}
+
+export function showWarnToast(message) {
+    createToast(message, 'warn');
 }

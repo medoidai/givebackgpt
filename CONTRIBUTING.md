@@ -23,9 +23,9 @@ Once your changes are complete and tested locally, open a pull request (PR) from
 ## Additional Notes
 
 - **Documentation**: Make sure to update any relevant documentation along with your changes.
-  
+
 - **Testing**: If applicable, include tests to ensure your changes work as expected and do not break existing functionality.
-  
+
 - **Review and Merge**: After submitting your PR, project maintainers will review your code. Be responsive to feedback and make necessary adjustments. Once approved, your changes will be merged into the `main` branch of the original repository.
 
 ## Licensing

@@ -9,11 +9,6 @@
     background-color: #2B3542;
     color: #E8EEF1;
 }
-.footer-box {
-    background-color: #3C6A87;
-    color: #E8EEF1;
-}
-#header {
-    background-color: #3C6A87;
-    color: #FFFFFF;
+.text-pre-wrap {
+    white-space: pre-wrap;
 }
