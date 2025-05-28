@@ -2,7 +2,7 @@
 
 To maintain the security of our project, we encourage all users and contributors to promptly report any potential vulnerabilities. Here’s how you can assist us:
 
-- **Report privately**: Please send an email to [info@medoid.ai](mailto:info@medoid.ai) and clearly indicate that your message concerns security. For instance, use a subject line like "Security Issue - Project Name".
+- **Report privately**: Please send an email to [givebackgpt@medoid.ai](mailto:givebackgpt@medoid.ai) and clearly indicate that your message concerns security. For instance, use a subject line like "Security Issue - Project Name".
 
 - **Include details**: Provide a thorough description of the vulnerability. If possible, attach supporting evidence such as code snippets or logs to your email.
 

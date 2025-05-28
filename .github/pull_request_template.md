@@ -1,23 +1,28 @@
 # Pull Request
 
 ## Description
-Briefly describe the changes introduced by this pull request.
+Briefly describe the changes introduced by the pull request (e.g., new feature, bug fix, documentation update).
 
-## Related Issue
-If this pull request resolves an open issue, please link to the issue here.
+## Related Issues
+If you have any related issues regarding the pull request, please link them. The hashtag (#) is used to mention issues by their unique number, such as #123.
 
-## Checklist
-Please review and check the following before submitting your pull request.
+## Pre-Submission Checklist
+Please complete the checklist below and consult with the right team members if needed. If any item doesn't apply, leave it unchecked.
 
 - [ ] I have read the *Contribution Guidelines* document.
-- [ ] I have performed a self-review of my own code.
-- [ ] I have commented my code, particularly in hard-to-understand areas.
-- [ ] I have made corresponding changes to the documentation (if applicable).
-- [ ] My changes generate no new warnings or errors.
-- [ ] I have tested my changes locally and they work as expected.
+- [ ] I have understood the use case and ensured the task aligns with the overall requirements, particularly for bug or security-related tickets.
+- [ ] I have ensured the code follows software development best practices, including clear naming conventions and proper comments/documentation.
+- [ ] I have ensured the code follows software security best practices, addressing potential security threats and consulting with security experts as needed.
+- [ ] I have updated the documentation to reflect new functionality and ensure it is clear, accurate, and accessible.
+- [ ] I have tested the code in the development environment to ensure it works as expected, including basic functionality and bug fixes.
+- [ ] I have confirmed the changes do not introduce new warnings or errors.
+- [ ] I have verified the code passes all relevant tests, covering new functionality and bug fixes, including unit, integration, and functional tests.
 
-## Screenshots (if applicable)
-Add screenshots to help explain your changes.
+## Labels
+Please ensure that relevant labels are added to the pull request (e.g., bug, enhancement, documentation).
+
+## Screenshots
+If you have any relevant screenshots to explain the changes, please upload them (e.g., UI changes, log messages).
 
 ## Additional Notes
-Any additional information or context for reviewers regarding this pull request.
+If you have any additional information regarding the pull request, please add them.

@@ -1,7 +1,37 @@
-.dockerignore
+**/*.py[cod]
 
-.gitignore
+**/__pycache__/
+
+**/.vscode/
+
+**/.DS_Store
+
+**/.devcontainer.json
+
+**/.github/
+
+**/assets/
+
+**/.git/
+
+.dockerignore
 
 .gitattributes
 
+.gitignore
+
+.env
+
+.env.template
+
+Dockerfile
+
 README.md
+
+CODE_OF_CONDUCT.md
+
+CONTRIBUTING.md
+
+SECURITY.md
+
+LICENSE

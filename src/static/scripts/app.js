@@ -3,7 +3,7 @@ import {
 } from './google_sheet_api.js';
 
 import {
-  generateLLMResponse
+  chatWithLLM
 } from './open_ai_api.js';
 
 import {
@@ -16,14 +16,22 @@ import {
   disableButton,
   appendResponseToChat,
   appendSearchElements,
-  createLeaderboardLink
+  createLeaderboardLink,
+  showErrorToast,
+  appendChatRespondingMessage,
+  removeChatRespondingMessage
 } from './ui_utils.js';
+
+import {
+  HttpResponseError
+} from './http_utils.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   const promptInput = document.getElementById('promptInput');
   const generateBtn = document.getElementById('generateBtn');
   const creditAuthorsBtn = document.getElementById('creditAuthorsBtn');
   const chat = document.getElementById('chat');
+  const searchResults = document.getElementById('searchResults');
 
   const embeddingsApiKeyInput = document.getElementById('embeddingsApiKey');
   const llmApiKeyInput = document.getElementById('llmApiKey');
@@ -72,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let conversationHistory = [];
 
   chat.dataset.isProcessing = 'false';
+  searchResults.dataset.isProcessing = 'false';
 
   checkSendButtonClickableState();
   checkCreditAuthorsButtonClickableState(collectedResults);
@@ -86,7 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   creditAuthorsBtn.addEventListener('click', async () => {
       try {
+          disableButton(generateBtn);
+
           disableButton(creditAuthorsBtn);
+
+          chat.dataset.isProcessing = 'true';
 
           const filteredResults = collectedResults.map(o => ({
               link: o.link,
@@ -97,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
           await sendResultsToGoogleSheet(filteredResults);
 
           appendSearchElements([
-              document.createTextNode(`All the authors have been credited! Please visit GiveBackGPT's `),
+              document.createTextNode(`✅ All the authors have been credited! Please visit GiveBackGPT's `),
               createLeaderboardLink('Google Sheet'),
               document.createTextNode(` to view the leaderboard.`)
           ]);
@@ -107,11 +120,15 @@ document.addEventListener('DOMContentLoaded', () => {
           console.error(error);
 
           appendSearchElements([
-              document.createTextNode(`We couldn't credit the authors at this time. Please try again later. If the issue persists, please send us your feedback, and we'll be happy to fix the problem. You can also view the current leaderboard on GiveBackGPT's `),
+              document.createTextNode(`⚠️ We couldn't credit the authors at this time. Please try again later. If the issue persists, send us your feedback and we will be happy to fix the problem. View the current leaderboard on GiveBackGPT's `),
               createLeaderboardLink('Google Sheet'),
               document.createTextNode(`.`)
           ]);
       } finally {
+          chat.dataset.isProcessing = 'false';
+
+          checkSendButtonClickableState();
+
           checkCreditAuthorsButtonClickableState(collectedResults);
       }
   });
@@ -120,37 +137,67 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
           disableButton(generateBtn);
 
+          disableButton(creditAuthorsBtn);
+
           chat.dataset.isProcessing = 'true';
 
           const promptInput = document.getElementById('promptInput');
 
-          const query = promptInput.value.trim() || promptInput.placeholder;
+          const query = promptInput.value.trim();
 
           appendResponseToChat('YOU', query);
 
           promptInput.value = '';
 
-          const llmResponse = await generateLLMResponse(query, conversationHistory);
+          appendChatRespondingMessage();
 
-          conversationHistory.push({
-              role: 'assistant',
-              content: llmResponse
-          });
+          const llmResponse = await chatWithLLM(query, llmApiKeyInput.value, conversationHistory);
+
+          removeChatRespondingMessage();
 
           appendResponseToChat('LLM', llmResponse);
 
-          searchQueue.push(llmResponse);
+          conversationHistory.push({ role: 'assistant', content: llmResponse });
 
-          // Process the queue if not already processing
-          if (searchQueue.length === 1) {
-              processSearchQueue(searchQueue, collectedResults);
-          }
-      } catch (error) {
+          searchQueue.push(llmResponse);
+      }
+      catch (error) {
           console.error(error);
-      } finally {
+
+          removeChatRespondingMessage();
+
+          if (error instanceof HttpResponseError) {
+              showErrorToast(error.message);
+          }
+      }
+      finally {
           chat.dataset.isProcessing = 'false';
 
           checkSendButtonClickableState();
+      }
+
+      try {
+          // Process the queue if not already processing
+          if (searchQueue.length === 1) {
+              searchResults.dataset.isProcessing = 'true';
+
+              try {
+                  await processSearchQueue(searchQueue, collectedResults, llmApiKeyInput.value, embeddingsApiKeyInput.value, scrapeApiKeyInput.value, searchApiKeyInput.value);
+              }
+              finally {
+                  searchResults.dataset.isProcessing = 'false';
+              }
+          }
+      }
+      catch (error) {
+          console.error(error);
+
+          if (error instanceof HttpResponseError) {
+              showErrorToast(error.message);
+          }
+      }
+      finally {
+          checkCreditAuthorsButtonClickableState(collectedResults);
       }
   });
 });

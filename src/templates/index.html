@@ -4,46 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GiveBackGPT</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/lux/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/lux/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="static/stylesheets/styles.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/images/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   </head>
   <body class="bg-light min-vh-100 d-flex flex-column">
     <div class="container mt-4 flex-grow-1 d-flex flex-column">
       <div class="row flex-grow-1 justify-content-center align-items-center">
         <div class="col-md-12 d-flex flex-column">
-          <header id="header" class="rounded p-4 text-center d-flex flex-column align-items-center justify-content-center">
-            <div class="d-flex flex-column flex-md-row align-items-center">
-              <img src="images/logo.png" alt="Logo of GiveBackGPT" class="mb-3 mb-md-0" style="max-width: 90px;">
-              <div id="header-title" class="display-4 fw-bold mb-2 mb-md-0 ms-md-4">GiveBackGPT</div>
+          <header class="rounded p-4 text-center d-flex flex-column align-items-center justify-content-center">
+            {% if show_login %}
+            <div class="mb-4"><a id="sign-in-link" href="/api/oauth/huggingface/login"><img id="sign-in" src="https://huggingface.co/datasets/huggingface/badges/resolve/main/sign-in-with-huggingface-lg.svg" alt="Sign in with Hugging Face"></a></div>
+            {% endif %}
+            <div class="d-flex flex-column align-items-center">
+              <div class="display-4 fw-bold mb-2 text-nowrap">🤲 GiveBackGPT</div>
             </div>
-            <div class="mt-2 mt-md-3">"Empowering AI with Open Access, One Search at a Time"</div>
+            <div class="mt-2">Creators Power AI. We Power Creators.</div>
           </header>
         </div>
       </div>
     </div>
     <div class="container flex-grow-1 d-flex flex-column">
       <div class="row flex-grow-1">
-        <div class="col-md-7 mt-4 d-flex flex-column">
+        <div class="col-md-7 mt-4 d-flex flex-column order-1 order-md-1">
           <h2 class="h4 fw-bold">Chat with any LLM</h2>
-          <div class="section-box flex-grow-1 overflow-auto p-4 shadow mt-2 rounded" id="chat"></div>
+          <div class="border section-box flex-grow-1 overflow-auto p-4 mt-2 rounded" id="chat"></div>
           <div class="input-group mt-4">
             <input id="promptInput" type="text" class="form-control rounded" placeholder="Ask a question...">
             <button id="generateBtn" class="btn btn-primary rounded ms-3">Send</button>
           </div>
         </div>
-        <div class="col-md-5 mt-4 d-flex flex-column">
+        <div class="col-md-12 d-flex flex-column order-2 order-md-3">
+          <div id="toastContainer">
+            <div id="hidden-toast-info" class="toast rounded shadow-none w-100 align-items-center text-white bg-primary border-0 mt-4" role="alert">
+              <div class="d-flex">
+                <div class="toast-body"></div>
+                <button type="button" class="btn-close btn-close-white m-auto me-md-2 me-3" data-bs-dismiss="toast"></button>
+              </div>
+            </div>
+            <div id="hidden-toast-error" class="toast rounded shadow-none w-100 align-items-center text-white bg-danger border-0 mt-4" role="alert">
+              <div class="d-flex">
+                <div class="toast-body"></div>
+                <button type="button" class="btn-close btn-close-white m-auto me-md-2 me-3" data-bs-dismiss="toast"></button>
+              </div>
+            </div>
+            <div id="hidden-toast-warn" class="toast rounded shadow-none w-100 align-items-center text-dark bg-warning border-0 mt-4" role="alert">
+              <div class="d-flex">
+                <div class="toast-body"></div>
+                <button type="button" class="btn-close btn-close-dark m-auto me-md-2 me-3" data-bs-dismiss="toast"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5 mt-4 d-flex flex-column order-3 order-md-2">
           <h2 class="h4 fw-bold">Similar Web Pages</h2>
-          <div class="section-box flex-grow-1 overflow-auto p-4 shadow mt-2 rounded" id="searchResults"></div>
+          <div class="border section-box flex-grow-1 overflow-auto p-4 mt-2 rounded" id="searchResults"></div>
           <button id="creditAuthorsBtn" class="btn btn-primary rounded mt-4">Credit Authors</button>
         </div>
       </div>
     </div>
     <div class="container mt-4">
       <div class="card rounded">
-        <div class="card-header fw-bold">SETTINGS</div>
+        <div class="card-header fw-bold">
+          <span class="bi bi-gear pe-2"></span>SETTINGS
+        </div>
         <div class="card-body">
           <ul class="nav nav-tabs" id="myTab">
             <li class="nav-item">
@@ -66,7 +93,7 @@
                   <div class="form-group">
                     <label for="llmSelect">Select LLM:</label>
                     <select id="llmSelect" class="form-select rounded" disabled>
-                      <option value="gpt-3.5-turbo">gpt-3.5-turbo (OpenAI)</option>
+                      <option value="gpt-4o">gpt-4o (OpenAI)</option>
                     </select>
                   </div>
                 </div>
@@ -140,40 +167,43 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4 d-flex mb-4">
-            <div class="card rounded footer-box flex-fill">
+            <div class="card rounded flex-fill">
               <div class="card-body d-flex flex-column">
-                <h5 class="card-title">Learn More</h5>
-                <p class="card-text flex-fill">Discover more about GiveBackGPT and our mission to support open-access content creators.</p>
-                <a href="https://www.medoid.ai/blog/ai-economies-should-include-and-credit-content-creators-givebackgpt/" class="btn btn-primary rounded">Learn More</a>
+                <h5 class="card-title">Our Vision</h5>
+                <p class="card-text flex-fill">Discover GiveBackGPT's mission to empower and support open-access content creators.</p>
+                <a href="https://www.medoid.ai/blog/ai-economies-should-include-and-credit-content-creators-givebackgpt" class="btn btn-primary rounded" target="_blank" rel="noopener noreferrer">Learn More</a>
               </div>
             </div>
           </div>
           <div class="col-md-4 d-flex mb-4">
-            <div class="card rounded footer-box flex-fill">
+            <div class="card rounded flex-fill">
               <div class="card-body d-flex flex-column">
-                <h5 class="card-title">Contact</h5>
-                <p class="card-text flex-fill">Do you have questions or feedback? We're here to listen and assist you!</p>
-                <a href="https://www.medoid.ai/contact/" class="btn btn-primary rounded">Contact</a>
+                <h5 class="card-title">Support & Feedback</h5>
+                <p class="card-text flex-fill">Have questions or suggestions? We're here to help and hear from you!</p>
+                <a href="https://github.com/medoidai/givebackgpt/discussions" class="btn btn-primary rounded" target="_blank" rel="noopener noreferrer">Get in Touch</a>
               </div>
             </div>
           </div>
           <div class="col-md-4 d-flex mb-4">
-            <div class="card rounded footer-box flex-fill">
+            <div class="card rounded flex-fill">
               <div class="card-body d-flex flex-column">
-                <h5 class="card-title">Follow</h5>
-                <p class="card-text flex-fill">Stay connected with us on LinkedIn for the latest updates and insights!</p>
-                <a href="https://www.linkedin.com/showcase/givebackgpt/" class="btn btn-primary rounded">Follow</a>
+                <h5 class="card-title">Contribute</h5>
+                <p class="card-text flex-fill">Explore our open-source code repository and help shape the future of GiveBackGPT.</p>
+                <a href="https://github.com/medoidai/givebackgpt" class="btn btn-primary rounded" target="_blank" rel="noopener noreferrer">View on GitHub</a>
               </div>
             </div>
           </div>
         </div>
-        <div class="mt-3 mb-3">GiveBackGPT is open-source! 🤲</div>
-        <a href="https://github.com/medoidai/givebackgpt/" target="_blank" rel="noopener noreferrer">
-          <img src="images/github.svg" width="32" height="32" alt="GitHub repository of GiveBackGPT">
-        </a>
+        <a class="bi bi-github h1 pe-1" href="https://github.com/medoidai/givebackgpt" target="_blank" rel="noopener noreferrer"></a>
+        <a class="bi bi-linkedin h1" href="https://www.linkedin.com/showcase/givebackgpt" target="_blank" rel="noopener noreferrer"></a>
+        {% if show_logout %}
+        <div class="mt-3">
+          <a id="sign-out-link" href="/api/oauth/huggingface/logout">Sign Out</a>
+        </div>
+        {% endif %}
       </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-    <script type="module" src="scripts/app.js"></script>
+    <script type="module" src="static/scripts/app.js"></script>
   </body>
 </html>
