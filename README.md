@@ -8,6 +8,8 @@ sdk: docker
 suggested_hardware: cpu-basic
 app_port: 7860
 header: mini
+thumbnail: https://huggingface.co/spaces/medoidai/GiveBackGPT/resolve/main/assets/social-media-thumbnail.png
+
 disable_embedding: true
 pinned: false
 license: mit
@@ -16,7 +18,7 @@ hf_oauth: true
 
 # Medoid AI - 🤲 GiveBackGPT
 
-<h4 align="center">An open, innovative approach to build fair AI economies that include creators for sustainable growth.</h4>
+<h4 align="center">An initiative to build a fair and sustainable AI ecosystem by identifying and crediting open-access creators whose work shows strong similarity to AI-generated content.</h4>
 
 <p align="center">
   <a href="https://github.com/medoidai/givebackgpt/blob/main/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/medoidai/givebackgpt?style=flat-square" alt="GiveBackGPT Licence" /></a>
