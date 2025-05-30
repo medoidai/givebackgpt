@@ -4,8 +4,6 @@ on:
     branches: [main]
   workflow_dispatch:
 
-permissions: write-all
-
 jobs:
   check-file-sizes-for-hf-space:
     runs-on: ubuntu-latest
