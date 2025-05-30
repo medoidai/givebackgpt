@@ -4,6 +4,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  pull-requests: write
+
 jobs:
   check-file-sizes-for-hf-space:
     runs-on: ubuntu-latest
@@ -11,4 +14,4 @@ jobs:
       - name: Check files
         uses: ActionsDesk/lfs-warning@v2.0
         with:
-          filesizelimit: 10485760 # 10MB limit by HF Space
+          filesizelimit: 10485760 # 10MB limit required by HF Space
