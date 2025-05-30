@@ -9,7 +9,6 @@ suggested_hardware: cpu-basic
 app_port: 7860
 header: mini
 thumbnail: https://huggingface.co/spaces/medoidai/GiveBackGPT/resolve/main/assets/social-media-thumbnail.png
-
 disable_embedding: true
 pinned: false
 license: mit
