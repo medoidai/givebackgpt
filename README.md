@@ -186,7 +186,7 @@ docker run -d -p "7860:7860" --env-file .env --restart unless-stopped --name "gi
 ### ▶️ Access the application
 
 * If you are running the application locally, open it at: http://localhost:7860
-* Alternatively, you can try the application online via the [GiveBackGPT](https://medoidai-givebackgpt.hf.space/) Hugging Face Space.
+* Alternatively, you can try the application online via the [GiveBackGPT](https://huggingface.co/spaces/medoidai/GiveBackGPT) Hugging Face Space.
 
 ### 🎉 Trying out the features
 
